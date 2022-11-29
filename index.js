@@ -26,29 +26,40 @@ async function run(){
       const resaleCategory = client.db('furnitureCategory')
       const furnitureCollection= resaleCategory.collection('allFurnitureCategory');
       
-      app.get('/category/:id',async(req,res)=>{
+      app.get('/category',async(req,res)=>{
          const query = {};
          const category = await furnitureCollection.find(query).toArray();
          res.send(category);
-         
+      })
+      app.get('/category/:id', async(req, res) => {
+         const id= req.params.id;
+         console.log(id)
+         const query = { _id: ObjectId(id) };
+          const furnitureCollection2 = await furnitureCollection.findOne(query);
+          res.send(furnitureCollection2);
+  
+    })
+
+   //-------//    for all product //-----//
      
-         const sittingCollection= resaleCategory.collection('sittingCollection');
+         const allCollection= resaleCategory.collection('allCollection');
       // const resaleCategory = client.db('furnitureCategory').collection('sittingCollection');
       
-      app.get('/sitting',async(req,res)=>{
+      app.get('/allCollection',async(req,res)=>{
          const query = {};
-         const sittingCollections = await sittingCollection.find(query).toArray();
-         res.send(sittingCollections);
+         const allCollections = await allCollection.find(query).toArray();
+         res.send(allCollections);
      
-          })
-      //      app.get('/sitting/:id', async(req, res) => {
-      //       const id= req.params.id;
-      //       console.log(id)
-      //       const query = { _id: ObjectId(id) };
-      //        const sittingCollections2 = await resaleCategory.findOne(query);
-      //        res.send(sittingCollections2);
+           })
+
+           app.get('/allCollection/:id', async(req, res) => {
+            const id= req.params.id;
+            console.log(id)
+            const query = { _id: ObjectId(id) };
+             const allCollections2 = await allCollection.findOne(query);
+             res.send(allCollections2);
      
-      // })
+       })
    }
 
    finally{
