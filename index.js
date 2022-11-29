@@ -26,11 +26,11 @@ async function run(){
       const resaleCategory = client.db('furnitureCategory')
       const furnitureCollection= resaleCategory.collection('allFurnitureCategory');
       
-      app.get('/category',async(req,res)=>{
+      app.get('/category/:id',async(req,res)=>{
          const query = {};
          const category = await furnitureCollection.find(query).toArray();
          res.send(category);
-         // req.send(category)
+         
      
          const sittingCollection= resaleCategory.collection('sittingCollection');
       // const resaleCategory = client.db('furnitureCategory').collection('sittingCollection');
