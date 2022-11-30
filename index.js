@@ -49,6 +49,11 @@ async function run(){
          const query = {};
          const allCollections = await allCollection.find(query).toArray();
          res.send(allCollections);})
+         
+      app.get('/allCategory',async(req,res)=>{
+         const query = {};
+         const allCollections = await allCollection.find(query).toArray();
+         res.send(allCollections);})
      
            
 
