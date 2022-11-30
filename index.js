@@ -45,18 +45,18 @@ async function run(){
          const allCollection= resaleCategory.collection('allCollection');
       // const resaleCategory = client.db('furnitureCategory').collection('sittingCollection');
       
-      app.get('/allCollection',async(req,res)=>{
+      app.get('/allCategory',async(req,res)=>{
          const query = {};
          const allCollections = await allCollection.find(query).toArray();
          res.send(allCollections);
      
            })
 
-           app.get('/allCollection/:id', async(req, res) => {
+           app.get('/allCategory/:id', async(req, res) => {
             const id= req.params.id;
             console.log(id)
-            const query = { _id: ObjectId(id) };
-             const allCollections2 = await allCollection.findOne(query);
+            const query = {categoryId:id};
+             const allCollections2 = await allCollection.find(query).toArray();
              res.send(allCollections2);
      
        })
